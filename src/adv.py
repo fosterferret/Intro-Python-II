@@ -49,3 +49,26 @@ player = Player('PlayerOne', room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+def main():
+    print_welcome_message()
+    player.print_current_room()
+    prompt_player()
+
+
+def print_welcome_message():
+    print('\n** Welcome to the greatest Adventure Game ever made! **')
+
+
+def prompt_player():
+    prompt_text = '\nHello, what would you like to do today? Press o to see the options available to you. '
+    key = input(prompt_text).split(' ')
+
+def print_supported_input():
+    print('n: go North')
+    print('w: go West')
+    print('s: go South')
+    print('e: go East')
+    print('q: quit game')
+    prompt_player()
