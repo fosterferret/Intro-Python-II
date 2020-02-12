@@ -62,7 +62,7 @@ def print_welcome_message():
 
 
 def prompt_player():
-    prompt_text = '\nWhat would you like to do?\nYou can press "h" to open up the help menu and see the options available to you.'
+    prompt_text = 'What would you like to do?\nYou can press "h" to open the help menu and see the options available to you. '
     key = input(prompt_text).split(' ')
     handle_input(key)
 
