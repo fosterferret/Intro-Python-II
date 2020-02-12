@@ -10,6 +10,11 @@ class Room:
         self.s_to = None
         self.e_to = None
         self.w_to = None
+        self.items = []
 
     def __str__(self):
         return f'{self.name}\n{self.description}\n'
+
+    def print_items(self):
+        for item in self.items:
+            print(f'{item.name}: {item.description}.')
