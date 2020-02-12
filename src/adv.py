@@ -90,17 +90,17 @@ def handle_input(key):
         elif key == 'h':
             print_supported_input()
         elif key in cardinal_directions.keys():
-            print(f'You move {cardinal_directions[key]}.')
+            print(f'You moved {cardinal_directions[key]}.')
             player.move(key)
             player.print_current_room()
             prompt_player()
         else:
-            print("\nYou can't do that here, young adventurer!")
+            print("\nYou can't do that here, young adventurer!\n")
             prompt_player()
 
 
 def quit_adventure():
-    print('\nYou have chosen to abandon your quest.')
+    print('\nYou have chosen to abandon your quest.\n')
 
 
 main()

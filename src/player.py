@@ -16,3 +16,4 @@ class Player:
             print('\nDark things lie there so you cannot go there!')
         else:
             self.current_room = new_room
+            print(f'You are now in the {self.current_room}')
