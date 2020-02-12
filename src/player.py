@@ -18,3 +18,12 @@ class Player:
         else:
             self.current_room = new_room
             print(f'You are now in the {self.current_room}')
+
+    def get_item(self, item_to_get):
+        if any(item.name == item_to_get for item in self.current_room.items):
+            item_object = next(
+                (item for item in self.current_room.items if item.name == item_to_get), None)
+            self.items.append(item_object)
+            self.current_room.items.remove(item_object)
+        else:
+            print(f"{item_to_get} isn't in this room...")
