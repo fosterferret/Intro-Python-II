@@ -72,12 +72,35 @@ def print_supported_input():
     print('w: go West')
     print('s: go South')
     print('e: go East')
-    print('q: quit game')
+    print('q: quit adventure')
     prompt_player()
 
 
-def handle_input(input):
-    print("meh")
+def handle_input(key):
+    if len(key) == 1:
+        key = key[0].lower()
+
+        cardinal_directions = {'n': 'North',
+                               'e': 'East',
+                               's': 'South',
+                               'w': 'West'}
+
+        if key == 'q':
+            quit_adventure()
+        elif key == 'h':
+            print_supported_input()
+        elif key in cardinal_directions.keys():
+            print(f'You move {cardinal_directions[key]}.')
+            player.move(key)
+            player.print_current_room()
+            prompt_player()
+        else:
+            print("\nYou can't do that here, young adventurer!")
+            prompt_player()
+
+
+def quit_adventure():
+    print('\nYou have chosen to abandon your quest.')
 
 
 main()
