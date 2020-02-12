@@ -8,4 +8,4 @@ class Player:
         self.current_room = current_room
 
     def print_current_room(self):
-        print(self.current_room)
+        print(f'\nCurrent room: {self.current_room}')

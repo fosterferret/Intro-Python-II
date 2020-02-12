@@ -12,4 +12,4 @@ class Room:
         self.w_to = None
 
     def __str__(self):
-        return f'\n{self.name}\n{self.description}\n'
+        return f'{self.name}\n{self.description}\n'
