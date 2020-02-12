@@ -62,8 +62,10 @@ def print_welcome_message():
 
 
 def prompt_player():
-    prompt_text = '\nHello, what would you like to do today? Press o to see the options available to you. '
+    prompt_text = '\nHello, what would you like to do today?\nYou can press "h" to open up the help menu and see the options available to you.'
     key = input(prompt_text).split(' ')
+    handle_input(key)
+
 
 def print_supported_input():
     print('n: go North')
@@ -72,3 +74,10 @@ def print_supported_input():
     print('e: go East')
     print('q: quit game')
     prompt_player()
+
+
+def handle_input(input):
+    print("meh")
+
+
+main()
