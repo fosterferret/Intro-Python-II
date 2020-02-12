@@ -14,7 +14,7 @@ class Player:
     def move(self, direction):
         new_room = getattr(self.current_room, f'{direction}_to')
         if not new_room:
-            print('\nDark things lie there so you cannot go there!')
+            print('\nHorrible things lie there so you cannot go there!')
         else:
             self.current_room = new_room
             print(f'You are now in the {self.current_room}')
@@ -27,3 +27,11 @@ class Player:
             self.current_room.items.remove(item_object)
         else:
             print(f"{item_to_get} isn't in this room...")
+
+    def print_inventory(self):
+        if not len(self.items):
+            print('\nYou have no item in your inventory.')
+        else:
+            print('\nThe items in your inventory are:')
+            for item in self.items:
+                print(item)
