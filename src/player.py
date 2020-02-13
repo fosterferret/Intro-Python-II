@@ -18,6 +18,16 @@ class Player:
         else:
             self.current_room = new_room
             print(f'You are now in the {self.current_room}')
+    
+    def drop_item(self, item_to_drop):
+        if any(item.name == item_to_drop for item in self.items):
+            item_object = next(
+                (item for item in self.items if item.name == item_to_drop), None)
+            self.items.remove(item_object)
+            self.current_room.items.append(item_object)
+            item_object.on_drop()
+        else:
+            print(f"You can't lose what you don't own({item_to_drop})!")
 
     def get_item(self, item_to_get):
         if any(item.name == item_to_get for item in self.current_room.items):

@@ -59,11 +59,11 @@ def main():
 
 
 def print_welcome_message():
-    print('\n** Welcome to the greatest Adventure Game ever made! **')
+    print(f'\n** Hello, {player_name} - welcome to the greatest Adventure Game ever made! **')
 
 
 def prompt_player():
-    prompt_text = 'What would you like to do?\nYou can press "h" to open the help menu and see the options available to you. '
+    prompt_text = 'What would you like to do next?\nYou can press "h" to open the help menu and see the options available to you. '
     key = input(prompt_text).split(' ')
     handle_input(key)
 
