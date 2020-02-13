@@ -33,13 +33,16 @@ class Player:
             print(f"You can't lose what you don't own({item_to_drop})!")
 
     def get_item(self, item_to_get):
-        if any(item.name == item_to_get for item in self.current_room.items):
-            item_object = next(
-                (item for item in self.current_room.items if item.name == item_to_get), None)
-            self.items.append(item_object)
-            self.current_room.items.remove(item_object)
+        if self.current_room.is_lit or self.has_a_lightsource():
+            if any(item.name == item_to_get for item in self.current_room.items):
+                item_object = next(
+                    (item for item in self.current_room.items if item.name == item_to_get), None)
+                self.items.append(item_object)
+                self.current_room.items.remove(item_object)
+            else:
+                print(f"{item_to_get} isn't in this room...")
         else:
-            print(f"{item_to_get} isn't in this room...")
+            print(f"You can't find {item_to_get} in the dark, young adventurer.")
 
     def print_inventory(self):
         if not len(self.items):
