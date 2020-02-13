@@ -2,6 +2,8 @@
 # currently.
 from item import LightSource
 
+def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
+
 class Player:
     def __init__(self, name, current_room):
         self.name = name
@@ -9,7 +11,8 @@ class Player:
         self.items = []
 
     def print_current_room(self):
-        print(f'\nCurrent room: {self.current_room}')
+        print(f"\nYour current location: {self.current_room}")
+        self.current_room.print_items()
     
     def has_a_lightsource(self):
         return any(isinstance(item, LightSource) for item in self.items)
@@ -20,7 +23,7 @@ class Player:
             print('\nYou may not tread that path, young adventurer, as it is a dead end!')
         else:
             self.current_room = new_room
-            print(f'You are now in the {self.current_room}')
+            print(f'You moved to: {self.current_room}')
     
     def drop_item(self, item_to_drop):
         if any(item.name == item_to_drop for item in self.items):
@@ -39,6 +42,7 @@ class Player:
                     (item for item in self.current_room.items if item.name == item_to_get), None)
                 self.items.append(item_object)
                 self.current_room.items.remove(item_object)
+                prGreen(f"\nYou added the {item_to_get} to your inventory.\n")
             else:
                 print(f"{item_to_get} isn't in this room...")
         else:

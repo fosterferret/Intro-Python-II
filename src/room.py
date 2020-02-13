@@ -17,8 +17,10 @@ class Room:
         return f'{self.name}\n{self.description}\n'
 
     def print_items(self):
-        for item in self.items:
-            print(f'This is a {item.name}: {item.description}.')
+        if len(self.items):
+            print('Some items in this room: ')
+            for item in self.items:
+                print(f'A {item.name}: {item.description}.')
 
     def add_item(self, item):
         self.items.append(item)

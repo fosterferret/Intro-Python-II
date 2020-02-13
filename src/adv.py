@@ -46,14 +46,19 @@ item = {
 
 room['outside'].add_item(item['lantern'])
 room['outside'].add_item(item['sword'])
-room['narrow'].add_item(item['gold'])
+room['treasure'].add_item(item['gold'])
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player_name = input("Welcome to the land of mysteries. What is your name?: ")
+
+
+def prYellow(skk): print("\033[94m {}\033[00m" .format(skk))
+
+
+player_name = input("\nWelcome to the land of mysteries. What is your name?: ")
 player = Player(player_name, room['outside'])
 # Write a loop that:
 #
@@ -73,25 +78,28 @@ def main():
     prompt_player()
 
 
+def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
+
+
 def print_welcome_message():
-    print(
+    prGreen(
         f'\n** Hello, {player_name} - welcome to the greatest Adventure Game ever made! **')
 
 
 def prompt_player():
-    prompt_text = 'What would you like to do next?\nYou can press "h" to open the help menu and see the options available to you. '
+    prompt_text = '\nWhat would you like to do next?\nYou can press "h" to open the help menu and see the options available to you. '
     key = input(prompt_text).split(' ')
     handle_input(key)
 
 
 def print_supported_input():
-    print('n: go North')
+    print('\nn: go North')
     print('w: go West')
     print('s: go South')
     print('e: go East')
     print('q: quit adventure')
     print('drop [item]: drop an item and remove it from your inventory')
-    print('get/pickup [item]: add an item to your inventory')
+    print('get/pickup [item]: add an item to your inventory \n')
     prompt_player()
 
 
@@ -113,29 +121,34 @@ def handle_input(key):
             quit_adventure()
         elif key == 'h':
             print_supported_input()
+        elif key == 'i':
+            player.print_inventory()
+            prompt_player()
         elif key in cardinal_directions.keys():
-            print(f'You moved {cardinal_directions[key]}.')
+            prYellow(f'Current Location: {cardinal_directions[key]}.')
             player.move(key)
             player.print_current_room()
             prompt_player()
-        elif len(key) == 2:
-            action = key[0].lower()
-            item_desc = key[1].lower()
-            global last_item
-            if item_desc == 'it':
-                item_desc = last_item
-            last_item = item_desc
 
-            if action == 'get' or action == 'pick':
-                player.get_item(item_desc)
-                prompt_player()
-            elif action == 'drop':
-                player.drop_item(item_desc)
-                prompt_player()
-            else:
-                handle_invalid_input()
+    elif len(key) == 2:
+        action = key[0].lower()
+        item_desc = key[1].lower()
+        global last_item
+        if item_desc == 'it':
+            item_desc = last_item
+        last_item = item_desc
+
+        if action == 'get' or action == 'pick':
+            player.get_item(item_desc)
+            prompt_player()
+        elif action == 'drop':
+            player.drop_item(item_desc)
+            prompt_player()
         else:
             handle_invalid_input()
+
+    else:
+        handle_invalid_input()
 
 
 def quit_adventure():
