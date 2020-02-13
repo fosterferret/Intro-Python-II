@@ -19,3 +19,6 @@ class Room:
     def print_items(self):
         for item in self.items:
             print(f'This is a {item.name}: {item.description}.')
+
+    def add_item(self, item):
+        self.items.append(item)
