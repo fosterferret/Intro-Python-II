@@ -42,6 +42,7 @@ item = {
     'sword': Item("sword", "The weapon of choice of all great adventurers."),
     'gold': Treasure('gold', "The treasure that the adventurer seeks!"),
     'lantern': LightSource('lantern', "Let there be light, and there was"),
+    'shield': Item("sword", "The tool of defense of all great adventurers."),
 }
 
 room['outside'].add_item(item['lantern'])
