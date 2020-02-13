@@ -44,4 +44,4 @@ class Player:
         else:
             print('\nThe items in your inventory are:')
             for item in self.items:
-                print(item)
+                print(f'- {item}')

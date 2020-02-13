@@ -18,4 +18,4 @@ class Room:
 
     def print_items(self):
         for item in self.items:
-            print(f'{item.name}: {item.description}.')
+            print(f'This is a {item.name}: {item.description}.')
