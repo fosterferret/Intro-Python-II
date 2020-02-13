@@ -1,6 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
-
+from item import LightSource
 
 class Player:
     def __init__(self, name, current_room):
@@ -10,11 +10,14 @@ class Player:
 
     def print_current_room(self):
         print(f'\nCurrent room: {self.current_room}')
+    
+    def has_a_lightsource(self):
+        return any(isinstance(item, LightSource) for item in self.items)
 
     def move(self, direction):
         new_room = getattr(self.current_room, f'{direction}_to')
         if not new_room:
-            print('\nHorrible things lie there so you cannot go there!')
+            print('\nYou may not tread that path, young adventurer, as it is a dead end!')
         else:
             self.current_room = new_room
             print(f'You are now in the {self.current_room}')
