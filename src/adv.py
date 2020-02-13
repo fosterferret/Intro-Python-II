@@ -59,7 +59,8 @@ def main():
 
 
 def print_welcome_message():
-    print(f'\n** Hello, {player_name} - welcome to the greatest Adventure Game ever made! **')
+    print(
+        f'\n** Hello, {player_name} - welcome to the greatest Adventure Game ever made! **')
 
 
 def prompt_player():
@@ -74,6 +75,13 @@ def print_supported_input():
     print('s: go South')
     print('e: go East')
     print('q: quit adventure')
+    print('drop [item]: drop an item and remove it from your inventory')
+    print('get/pickup [item]: add an item to your inventory')
+    prompt_player()
+
+
+def handle_invalid_input():
+    print("\nYou can't do that here, young adventurer!\n")
     prompt_player()
 
 
@@ -95,9 +103,24 @@ def handle_input(key):
             player.move(key)
             player.print_current_room()
             prompt_player()
+        elif len(key) == 2:
+            action = key[0].lower()
+            item_desc = key[1].lower()
+            global last_item
+            if item_desc == 'it':
+                item_desc = last_item
+            last_item = item_desc
+
+            if action == 'get' or action == 'pick':
+                player.get_item(item_desc)
+                prompt_player()
+            elif action == 'drop':
+                player.drop_item(item_desc)
+                prompt_player()
+            else:
+                handle_invalid_input()
         else:
-            print("\nYou can't do that here, young adventurer!\n")
-            prompt_player()
+            handle_invalid_input()
 
 
 def quit_adventure():
